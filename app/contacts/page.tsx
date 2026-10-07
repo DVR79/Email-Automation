@@ -43,7 +43,7 @@ function fmtDate(d: Date | null) {
 export default async function ContactsPage({ searchParams }: { searchParams: Promise<{ q?: string; status?: string }> }) {
   const { q, status } = await searchParams;
   const where: { OR?: object[]; status?: string } = {};
-  if (q && q.trim()) where.OR = [{ email: { contains: q.trim() } }, { name: { contains: q.trim() } }];
+  if (q && q.trim()) where.OR = [{ email: { contains: q.trim(), mode: "insensitive" } }, { name: { contains: q.trim(), mode: "insensitive" } }];
   if (status && status !== "All") where.status = status;
 
   const contacts = await prisma.contact.findMany({ where, orderBy: { createdAt: "desc" } });
