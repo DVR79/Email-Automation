@@ -10,6 +10,11 @@ const port = Number(process.env.SMTP_PORT || 1025);
 const user = process.env.SMTP_USER;
 const pass = process.env.SMTP_PASS;
 
+// When a Resend API key is present (for example on Vercel, where raw SMTP is
+// unreliable) send over Resend's HTTP API. Otherwise fall back to SMTP, which
+// targets Mailpit in local development. No extra dependency: plain fetch.
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
+
 export const DEFAULT_FROM = process.env.MAIL_FROM || "Sendrift <hello@sendrift.local>";
 
 // Base URL the tracking links point back to. Must be reachable from wherever
@@ -28,7 +33,33 @@ const transporter = nodemailer.createTransport({
 
 export type SendResult = { ok: true; id?: string } | { ok: false; error: string };
 
+// Send over Resend's HTTP API. Used when RESEND_API_KEY is set.
+async function sendViaResend(opts: { to: string; subject: string; html: string; text?: string; from?: string }): Promise<SendResult> {
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: opts.from || DEFAULT_FROM,
+        to: opts.to,
+        subject: opts.subject,
+        html: opts.html,
+        text: opts.text || htmlToText(opts.html),
+      }),
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      return { ok: false, error: `Resend ${res.status}: ${body.slice(0, 300)}` };
+    }
+    const data = (await res.json()) as { id?: string };
+    return { ok: true, id: data.id };
+  } catch (e) {
+    return { ok: false, error: e instanceof Error ? e.message : String(e) };
+  }
+}
+
 export async function sendMail(opts: { to: string; subject: string; html: string; text?: string; from?: string }): Promise<SendResult> {
+  if (RESEND_API_KEY) return sendViaResend(opts);
   try {
     const info = await transporter.sendMail({
       from: opts.from || DEFAULT_FROM,
