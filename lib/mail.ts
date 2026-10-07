@@ -33,8 +33,24 @@ const transporter = nodemailer.createTransport({
 
 export type SendResult = { ok: true; id?: string } | { ok: false; error: string };
 
+// Extract the bare email address from a "Name <email>" string.
+function addressOf(s: string) {
+  const m = s.match(/<([^>]+)>/);
+  return m ? m[1].trim() : s.trim();
+}
+
+// Build a From header that keeps the account's display name but always uses the
+// verified sender address (from MAIL_FROM). Resend rejects unverified From
+// addresses, so the user's own reply address goes in Reply-To instead.
+export function senderFrom(fromName?: string | null) {
+  const addr = addressOf(DEFAULT_FROM);
+  return fromName && fromName.trim() ? `${fromName.trim()} <${addr}>` : DEFAULT_FROM;
+}
+
+type MailOpts = { to: string; subject: string; html: string; text?: string; from?: string; replyTo?: string };
+
 // Send over Resend's HTTP API. Used when RESEND_API_KEY is set.
-async function sendViaResend(opts: { to: string; subject: string; html: string; text?: string; from?: string }): Promise<SendResult> {
+async function sendViaResend(opts: MailOpts): Promise<SendResult> {
   try {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -45,6 +61,7 @@ async function sendViaResend(opts: { to: string; subject: string; html: string; 
         subject: opts.subject,
         html: opts.html,
         text: opts.text || htmlToText(opts.html),
+        ...(opts.replyTo ? { reply_to: opts.replyTo } : {}),
       }),
     });
     if (!res.ok) {
@@ -58,7 +75,7 @@ async function sendViaResend(opts: { to: string; subject: string; html: string; 
   }
 }
 
-export async function sendMail(opts: { to: string; subject: string; html: string; text?: string; from?: string }): Promise<SendResult> {
+export async function sendMail(opts: MailOpts): Promise<SendResult> {
   if (RESEND_API_KEY) return sendViaResend(opts);
   try {
     const info = await transporter.sendMail({
@@ -67,6 +84,7 @@ export async function sendMail(opts: { to: string; subject: string; html: string
       subject: opts.subject,
       html: opts.html,
       text: opts.text || htmlToText(opts.html),
+      ...(opts.replyTo ? { replyTo: opts.replyTo } : {}),
     });
     return { ok: true, id: info.messageId };
   } catch (e) {

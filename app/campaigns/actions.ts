@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
-import { sendMail, renderCampaignEmail } from "@/lib/mail";
+import { sendMail, renderCampaignEmail, senderFrom } from "@/lib/mail";
 
 /* Campaign server actions. Sendrift. Copyright 2026 Venkataramana. */
 
@@ -42,7 +42,9 @@ export async function sendCampaign(formData: FormData) {
     prisma.setting.findUnique({ where: { id: "singleton" } }),
   ]);
   const address = setting?.address || "Sendrift, 21 Riverside Way, Bengaluru";
-  const from = setting ? `${setting.fromName} <${setting.replyTo}>` : undefined;
+  // From uses the verified sender; the account reply address goes in Reply-To.
+  const from = senderFrom(setting?.fromName);
+  const replyTo = setting?.replyTo || undefined;
 
   await prisma.campaign.update({ where: { id }, data: { status: "Sending" } });
 
@@ -55,7 +57,7 @@ export async function sendCampaign(formData: FormData) {
       data: { campaignId: id, contactId: c.id, email: c.email, status: "Queued", kind: "campaign" },
     });
     const { subject, html, text } = renderCampaignEmail(campaign, c, { address, messageId: msg.id });
-    const res = await sendMail({ to: c.email, subject, html, text, from });
+    const res = await sendMail({ to: c.email, subject, html, text, from, replyTo });
     await prisma.message.update({
       where: { id: msg.id },
       data: {

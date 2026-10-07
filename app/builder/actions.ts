@@ -3,7 +3,7 @@
 import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { sendMail, wrapEmail, htmlToText } from "@/lib/mail";
+import { sendMail, wrapEmail, htmlToText, senderFrom } from "@/lib/mail";
 
 /* Email builder server actions. Sendrift. Copyright 2026 Venkataramana. */
 
@@ -13,10 +13,11 @@ export async function sendTestEmail(html: string, to?: string): Promise<{ ok: bo
   const setting = await prisma.setting.findUnique({ where: { id: "singleton" } });
   const dest = (to && to.trim()) || setting?.replyTo || "test@sendrift.local";
   const address = setting?.address || "Sendrift, 21 Riverside Way, Bengaluru";
-  const from = setting ? `${setting.fromName} <${setting.replyTo}>` : undefined;
+  const from = senderFrom(setting?.fromName);
+  const replyTo = setting?.replyTo || undefined;
   const body = html && html.trim() ? html : "<p>This is a test email from Sendrift.</p>";
   const wrapped = wrapEmail(body, { address });
-  const res = await sendMail({ to: dest, subject: "[Test] Sendrift email", html: wrapped, text: htmlToText(wrapped), from });
+  const res = await sendMail({ to: dest, subject: "[Test] Sendrift email", html: wrapped, text: htmlToText(wrapped), from, replyTo });
   await prisma.message.create({
     data: { email: dest, subject: "[Test] Sendrift email", status: res.ok ? "Sent" : "Failed", providerId: res.ok ? res.id : undefined, error: res.ok ? undefined : res.error, kind: "test" },
   });
