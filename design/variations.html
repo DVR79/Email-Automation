@@ -1,0 +1,280 @@
+<!--
+  Sendrift design directions gallery.
+  Designed and built by Venkataramana. Copyright (c) 2026 Venkataramana. All rights reserved.
+-->
+<title>Sendrift Design Directions</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --panel:#ffffff; --ink:#16181d; --sub:#5c6270; --line:#e4e6eb; --brand:#5b4be6;
+    --font:'Inter',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#0c0d10; --panel:#141519; --ink:#f2f3f6; --sub:#9aa0ac; --line:#26282f; --brand:#8b7cff; color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#0c0d10; --panel:#141519; --ink:#f2f3f6; --sub:#9aa0ac; --line:#26282f; --brand:#8b7cff; color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.5}
+  .wrap{max-width:1180px;margin:0 auto;padding-block:26px;padding-left:16px;padding-right:16px}
+  .head{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .head h1{margin:0;font-size:26px;letter-spacing:-.02em}
+  .head p{margin:0;color:var(--sub);max-width:640px}
+  .toggle{margin-left:auto;border:1px solid var(--line);background:var(--panel);color:var(--sub);
+    border-radius:8px;height:36px;padding:0 12px;cursor:pointer;font:inherit;font-weight:600}
+  .note{color:var(--sub);font-size:13px;margin:10px 0 22px;padding:10px 14px;border:1px dashed var(--line);border-radius:10px}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:22px}
+  @media (max-width:520px){.gallery{grid-template-columns:1fr}}
+  .frame{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel);display:flex;flex-direction:column}
+  .cap{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+  .cap .num{width:26px;height:26px;border-radius:7px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px;flex:none}
+  .cap .t{font-weight:700}
+  .cap .d{color:var(--sub);font-size:12.5px}
+  .stage{padding:16px;min-height:300px;display:flex}
+  /* generic mini bits reused inside stages via inline styles */
+  .mini{width:100%;border-radius:12px;overflow:hidden;font-size:12px}
+  .spark{display:block;width:100%}
+  .foot{color:var(--sub);text-align:center;font-size:12px;margin-top:26px}
+  b{font-variant-numeric:tabular-nums}
+</style>
+
+<div class="wrap">
+  <div class="head">
+    <div>
+      <h1>Sendrift, 12 design directions</h1>
+      <p>Same dashboard, twelve modern looks. Scroll through, then tell me the number you want. I will rebuild the full clickable demo in that direction.</p>
+    </div>
+    <button class="toggle" id="tg">Toggle light / dark</button>
+  </div>
+  <div class="note">Each tile is a static style sample of the dashboard (KPIs, chart, list). Say for example "go with 3" or mix, like "layout of 10 with colors of 2".</div>
+
+  <div class="gallery">
+
+    <!-- 1. Aurora Dark (Linear/Vercel) -->
+    <div class="frame">
+      <div class="cap"><span class="num">1</span><span class="t">Aurora Dark</span><span class="d">Linear / Vercel sleek</span></div>
+      <div class="stage" style="background:#08080a">
+        <div class="mini" style="font-family:var(--font);color:#e6e6ea">
+          <div style="display:flex;gap:10px">
+            <div style="width:96px;flex:none">
+              <div style="font-weight:700;font-size:13px;margin:2px 4px 10px;color:#fff">Sendrift</div>
+              <div style="padding:6px 8px;border-radius:6px;background:#161619;color:#fff">Dashboard</div>
+              <div style="padding:6px 8px;color:#8a8a92">Contacts</div>
+              <div style="padding:6px 8px;color:#8a8a92">Campaigns</div>
+            </div>
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;gap:8px;margin-bottom:8px">
+                <div style="flex:1;border:1px solid #202024;border-radius:9px;padding:9px 10px"><div style="color:#7a7a82;font-size:10px;letter-spacing:.04em">CONTACTS</div><div style="font-size:17px;font-weight:700">24,318</div><div style="color:#8b7bff;font-size:10px">+4.2%</div></div>
+                <div style="flex:1;border:1px solid #202024;border-radius:9px;padding:9px 10px"><div style="color:#7a7a82;font-size:10px;letter-spacing:.04em">OPEN RATE</div><div style="font-size:17px;font-weight:700">42.6%</div><div style="color:#8b7bff;font-size:10px">+2.1%</div></div>
+              </div>
+              <div style="border:1px solid #202024;border-radius:9px;padding:10px;position:relative;overflow:hidden">
+                <div style="color:#7a7a82;font-size:10px;margin-bottom:4px">PERFORMANCE</div>
+                <svg class="spark" height="52" viewBox="0 0 240 52" preserveAspectRatio="none"><defs><linearGradient id="a1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#8b7bff" stop-opacity=".35"/><stop offset="1" stop-color="#8b7bff" stop-opacity="0"/></linearGradient></defs><path d="M0,44 40,34 80,38 120,22 160,26 200,12 240,8 240,52 0,52Z" fill="url(#a1)"/><polyline points="0,44 40,34 80,38 120,22 160,26 200,12 240,8" fill="none" stroke="#8b7bff" stroke-width="2"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Soft Bento -->
+    <div class="frame">
+      <div class="cap"><span class="num">2</span><span class="t">Soft Bento</span><span class="d">Rounded pastel bento grid</span></div>
+      <div class="stage" style="background:#f3f1fb">
+        <div class="mini" style="font-family:var(--font);color:#1a1626">
+          <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-auto-rows:auto;gap:10px">
+            <div style="grid-column:1/4;background:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 6px 18px #6b4bff12"><div style="color:#8b86a0;font-size:11px">Good afternoon, Venkataramana</div><div style="font-weight:800;font-size:16px">Your sending at a glance</div></div>
+            <div style="background:#e9e4ff;border-radius:16px;padding:12px"><div style="color:#7a6fb0;font-size:10px">CONTACTS</div><div style="font-weight:800;font-size:22px;color:#5b4be6">24.3k</div></div>
+            <div style="background:#ffe7df;border-radius:16px;padding:12px"><div style="color:#b07a68;font-size:10px">OPENS</div><div style="font-weight:800;font-size:22px;color:#ff6b4a">42.6%</div></div>
+            <div style="background:#dff3ea;border-radius:16px;padding:12px"><div style="color:#4e8f72;font-size:10px">CLICKS</div><div style="font-weight:800;font-size:22px;color:#12a150">7.9%</div></div>
+            <div style="grid-column:1/4;background:#fff;border-radius:16px;padding:10px 14px;box-shadow:0 6px 18px #6b4bff12"><svg class="spark" height="46" viewBox="0 0 300 46" preserveAspectRatio="none"><polyline points="0,38 50,30 100,32 150,20 200,24 250,12 300,10" fill="none" stroke="#5b4be6" stroke-width="2.5"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Nebula Glass -->
+    <div class="frame">
+      <div class="cap"><span class="num">3</span><span class="t">Nebula Glass</span><span class="d">Dark glass + gradient glow</span></div>
+      <div class="stage" style="background:radial-gradient(120% 120% at 0% 0%,#3a1d6e,#0e0b1a 55%)">
+        <div class="mini" style="font-family:var(--font);color:#efeaff">
+          <div style="font-size:10px;letter-spacing:.14em;color:#b9a8ff;margin:0 2px 10px">SENDRIFT</div>
+          <div style="display:flex;gap:8px;margin-bottom:8px">
+            <div style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:10px;backdrop-filter:blur(6px)"><div style="font-size:10px;color:#b9a8ff">CONTACTS</div><div style="font-size:18px;font-weight:700">24,318</div><div style="height:4px;border-radius:99px;margin-top:7px;background:linear-gradient(90deg,#8b5cff,#ff6bd6)"></div></div>
+            <div style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:10px;backdrop-filter:blur(6px)"><div style="font-size:10px;color:#b9a8ff">OPENS</div><div style="font-size:18px;font-weight:700">42.6%</div><div style="height:4px;border-radius:99px;margin-top:7px;background:linear-gradient(90deg,#22d3ee,#8b5cff)"></div></div>
+          </div>
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px;backdrop-filter:blur(6px)"><div style="font-size:10px;color:#b9a8ff;margin-bottom:4px">PERFORMANCE</div><svg class="spark" height="48" viewBox="0 0 260 48" preserveAspectRatio="none"><polyline points="0,40 43,30 86,34 130,18 173,22 216,8 260,6" fill="none" stroke="#c4b5ff" stroke-width="2"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Editorial Light -->
+    <div class="frame">
+      <div class="cap"><span class="num">4</span><span class="t">Editorial Light</span><span class="d">Stripe / Notion, bold type, hairlines</span></div>
+      <div class="stage" style="background:#fff">
+        <div class="mini" style="font-family:var(--font);color:#0b0b0f">
+          <div style="font-size:22px;font-weight:800;letter-spacing:-.02em">Dashboard</div>
+          <div style="font-size:11px;color:#8a8a93;margin-bottom:12px">Tuesday, September 30</div>
+          <div style="display:flex;gap:22px;border-top:1px solid #ececf0;border-bottom:1px solid #ececf0;padding:12px 0;margin-bottom:12px">
+            <div><div style="font-size:10px;color:#8a8a93">CONTACTS</div><div style="font-size:20px;font-weight:800">24,318</div></div>
+            <div><div style="font-size:10px;color:#8a8a93">OPEN RATE</div><div style="font-size:20px;font-weight:800">42.6%</div></div>
+            <div><div style="font-size:10px;color:#8a8a93">CLICKS</div><div style="font-size:20px;font-weight:800;color:#5b4be6">7.9%</div></div>
+          </div>
+          <svg class="spark" height="50" viewBox="0 0 320 50" preserveAspectRatio="none"><polyline points="0,42 53,34 106,36 160,22 213,26 266,14 320,10" fill="none" stroke="#5b4be6" stroke-width="2"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Neo Brutalist -->
+    <div class="frame">
+      <div class="cap"><span class="num">5</span><span class="t">Neo Brutalist</span><span class="d">Thick borders, flat, offset shadows</span></div>
+      <div class="stage" style="background:#fdf6e3">
+        <div class="mini" style="font-family:var(--font);color:#111">
+          <div style="display:flex;gap:8px;margin-bottom:8px">
+            <div style="flex:1;background:#fff;border:2px solid #111;border-radius:4px;padding:9px;box-shadow:3px 3px 0 #111"><div style="font-size:10px;font-weight:700">CONTACTS</div><div style="font-size:18px;font-weight:900">24,318</div></div>
+            <div style="flex:1;background:#c8f169;border:2px solid #111;border-radius:4px;padding:9px;box-shadow:3px 3px 0 #111"><div style="font-size:10px;font-weight:700">OPENS</div><div style="font-size:18px;font-weight:900">42.6%</div></div>
+            <div style="flex:1;background:#ff8a5c;border:2px solid #111;border-radius:4px;padding:9px;box-shadow:3px 3px 0 #111"><div style="font-size:10px;font-weight:700">CLICKS</div><div style="font-size:18px;font-weight:900">7.9%</div></div>
+          </div>
+          <div style="background:#fff;border:2px solid #111;border-radius:4px;padding:10px;box-shadow:3px 3px 0 #111"><div style="font-size:10px;font-weight:700;margin-bottom:4px">PERFORMANCE</div><svg class="spark" height="46" viewBox="0 0 300 46" preserveAspectRatio="none"><polyline points="0,38 50,28 100,32 150,18 200,22 250,10 300,8" fill="none" stroke="#111" stroke-width="3"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Mono Minimal -->
+    <div class="frame">
+      <div class="cap"><span class="num">6</span><span class="t">Mono Minimal</span><span class="d">Near monochrome, one accent, airy</span></div>
+      <div class="stage" style="background:#fafafa">
+        <div class="mini" style="font-family:var(--font);color:#18181b">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="font-weight:700">Sendrift</div><div style="font-size:11px;color:#a1a1aa">30 days</div></div>
+          <div style="display:flex;gap:28px;margin-bottom:14px">
+            <div><div style="font-size:24px;font-weight:700">24,318</div><div style="font-size:10px;color:#a1a1aa;letter-spacing:.05em">CONTACTS</div></div>
+            <div><div style="font-size:24px;font-weight:700">42.6%</div><div style="font-size:10px;color:#a1a1aa;letter-spacing:.05em">OPEN RATE</div></div>
+            <div><div style="font-size:24px;font-weight:700;color:#5b4be6">7.9%</div><div style="font-size:10px;color:#a1a1aa;letter-spacing:.05em">CLICK RATE</div></div>
+          </div>
+          <svg class="spark" height="52" viewBox="0 0 320 52" preserveAspectRatio="none"><polyline points="0,44 53,38 106,40 160,26 213,30 266,16 320,12" fill="none" stroke="#18181b" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Frost Light -->
+    <div class="frame">
+      <div class="cap"><span class="num">7</span><span class="t">Frost Light</span><span class="d">Light glassmorphism, frosted cards</span></div>
+      <div class="stage" style="background:linear-gradient(135deg,#e8ecff,#ffe9f2 60%,#e6fbff)">
+        <div class="mini" style="font-family:var(--font);color:#20233a">
+          <div style="font-size:11px;color:#5b5f82;margin:0 2px 10px;font-weight:600">Sendrift</div>
+          <div style="display:flex;gap:8px;margin-bottom:8px">
+            <div style="flex:1;background:rgba(255,255,255,.55);border:1px solid #fff;border-radius:13px;padding:10px;backdrop-filter:blur(8px);box-shadow:0 6px 16px #5b4be614"><div style="font-size:10px;color:#6a6f92">CONTACTS</div><div style="font-size:18px;font-weight:800">24,318</div></div>
+            <div style="flex:1;background:rgba(255,255,255,.55);border:1px solid #fff;border-radius:13px;padding:10px;backdrop-filter:blur(8px);box-shadow:0 6px 16px #5b4be614"><div style="font-size:10px;color:#6a6f92">OPENS</div><div style="font-size:18px;font-weight:800">42.6%</div></div>
+          </div>
+          <div style="background:rgba(255,255,255,.55);border:1px solid #fff;border-radius:13px;padding:10px;backdrop-filter:blur(8px);box-shadow:0 6px 16px #5b4be614"><svg class="spark" height="46" viewBox="0 0 260 46" preserveAspectRatio="none"><polyline points="0,38 43,30 86,32 130,18 173,22 216,10 260,8" fill="none" stroke="#7a5cff" stroke-width="2.5"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Cyber Neon -->
+    <div class="frame">
+      <div class="cap"><span class="num">8</span><span class="t">Cyber Neon</span><span class="d">Black + neon, data dense</span></div>
+      <div class="stage" style="background:#05060a">
+        <div class="mini" style="font-family:var(--font);color:#d7e3ee">
+          <div style="display:flex;gap:8px;margin-bottom:8px">
+            <div style="flex:1;border:1px solid #16323a;border-radius:8px;padding:9px;background:#0a1016"><div style="font-size:9px;color:#4bd6c4;letter-spacing:.08em">CONTACTS</div><div style="font-size:17px;font-weight:700;color:#5eeadf">24,318</div></div>
+            <div style="flex:1;border:1px solid #331a33;border-radius:8px;padding:9px;background:#120a12"><div style="font-size:9px;color:#ff5cc8;letter-spacing:.08em">OPENS</div><div style="font-size:17px;font-weight:700;color:#ff7ad4">42.6%</div></div>
+            <div style="flex:1;border:1px solid #2a2a16;border-radius:8px;padding:9px;background:#12120a"><div style="font-size:9px;color:#e3e34b;letter-spacing:.08em">CLICKS</div><div style="font-size:17px;font-weight:700;color:#f2f27a">7.9%</div></div>
+          </div>
+          <div style="border:1px solid #16323a;border-radius:8px;padding:9px;background:#0a1016"><svg class="spark" height="46" viewBox="0 0 300 46" preserveAspectRatio="none"><polyline points="0,38 50,28 100,32 150,16 200,22 250,9 300,7" fill="none" stroke="#5eeadf" stroke-width="2"/><polyline points="0,42 50,36 100,38 150,28 200,32 250,22 300,20" fill="none" stroke="#ff7ad4" stroke-width="1.5" stroke-opacity=".7"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Gradient Mesh -->
+    <div class="frame">
+      <div class="cap"><span class="num">9</span><span class="t">Gradient Mesh</span><span class="d">Colorful mesh hero + white cards</span></div>
+      <div class="stage" style="background:#f4f5f8">
+        <div class="mini" style="font-family:var(--font);color:#16181d">
+          <div style="border-radius:14px;padding:14px;margin-bottom:8px;color:#fff;background:radial-gradient(90% 140% at 10% 0%,#5b4be6,#a855c7 45%,#ff6b4a)"><div style="font-size:11px;opacity:.85">Emails delivered this month</div><div style="font-size:22px;font-weight:800">186,402</div></div>
+          <div style="display:flex;gap:8px">
+            <div style="flex:1;background:#fff;border:1px solid #e7e8ec;border-radius:12px;padding:10px"><div style="font-size:10px;color:#8a8a93">OPENS</div><div style="font-size:17px;font-weight:800">42.6%</div><svg class="spark" height="24" viewBox="0 0 120 24" preserveAspectRatio="none"><polyline points="0,18 30,14 60,16 90,8 120,6" fill="none" stroke="#5b4be6" stroke-width="2"/></svg></div>
+            <div style="flex:1;background:#fff;border:1px solid #e7e8ec;border-radius:12px;padding:10px"><div style="font-size:10px;color:#8a8a93">CLICKS</div><div style="font-size:17px;font-weight:800">7.9%</div><svg class="spark" height="24" viewBox="0 0 120 24" preserveAspectRatio="none"><polyline points="0,10 30,12 60,11 90,14 120,15" fill="none" stroke="#ff6b4a" stroke-width="2"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. Command Rail -->
+    <div class="frame">
+      <div class="cap"><span class="num">10</span><span class="t">Command Rail</span><span class="d">Icon rail + compact pro analytics</span></div>
+      <div class="stage" style="background:#0f1115">
+        <div class="mini" style="font-family:var(--font);color:#e8eaed;display:flex;gap:10px">
+          <div style="width:40px;flex:none;background:#171a20;border-radius:10px;padding:8px 0;display:flex;flex-direction:column;align-items:center;gap:10px">
+            <div style="width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,#5b4be6,#ff6b4a)"></div>
+            <div style="width:20px;height:20px;border-radius:6px;background:#242832"></div>
+            <div style="width:20px;height:20px;border-radius:6px;background:#242832"></div>
+            <div style="width:20px;height:20px;border-radius:6px;background:#242832"></div>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:6px">
+              <div style="background:#171a20;border-radius:8px;padding:8px"><div style="font-size:9px;color:#8b909b">CONTACTS</div><div style="font-size:15px;font-weight:700">24,318</div></div>
+              <div style="background:#171a20;border-radius:8px;padding:8px"><div style="font-size:9px;color:#8b909b">SENT</div><div style="font-size:15px;font-weight:700">186k</div></div>
+              <div style="background:#171a20;border-radius:8px;padding:8px"><div style="font-size:9px;color:#8b909b">OPENS</div><div style="font-size:15px;font-weight:700">42.6%</div></div>
+            </div>
+            <div style="background:#171a20;border-radius:8px;padding:9px"><div style="display:flex;justify-content:space-between;font-size:9px;color:#8b909b;margin-bottom:4px"><span>PERFORMANCE</span><span>30d</span></div><svg class="spark" height="42" viewBox="0 0 240 42" preserveAspectRatio="none"><path d="M0,34 40,26 80,30 120,16 160,20 200,8 240,6 240,42 0,42Z" fill="#5b4be6" fill-opacity=".15"/><polyline points="0,34 40,26 80,30 120,16 160,20 200,8 240,6" fill="none" stroke="#7c6cff" stroke-width="2"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. Sunset Warm -->
+    <div class="frame">
+      <div class="cap"><span class="num">11</span><span class="t">Sunset Warm</span><span class="d">Warm plum and coral, cozy modern</span></div>
+      <div class="stage" style="background:#1c1420">
+        <div class="mini" style="font-family:var(--font);color:#f8ecef">
+          <div style="font-size:11px;color:#e79a86;margin:0 2px 10px;font-weight:600">Sendrift</div>
+          <div style="display:flex;gap:8px;margin-bottom:8px">
+            <div style="flex:1;background:#2a1d2e;border:1px solid #3d2b40;border-radius:12px;padding:10px"><div style="font-size:10px;color:#c99">CONTACTS</div><div style="font-size:18px;font-weight:800;color:#ffd9c2">24,318</div></div>
+            <div style="flex:1;background:#2a1d2e;border:1px solid #3d2b40;border-radius:12px;padding:10px"><div style="font-size:10px;color:#c99">OPENS</div><div style="font-size:18px;font-weight:800;color:#ff9d7a">42.6%</div></div>
+          </div>
+          <div style="background:#2a1d2e;border:1px solid #3d2b40;border-radius:12px;padding:10px"><svg class="spark" height="46" viewBox="0 0 260 46" preserveAspectRatio="none"><defs><linearGradient id="sw" x1="0" x2="1"><stop offset="0" stop-color="#ff6b4a"/><stop offset="1" stop-color="#e5487f"/></linearGradient></defs><polyline points="0,38 43,30 86,32 130,18 173,22 216,10 260,8" fill="none" stroke="url(#sw)" stroke-width="2.5"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Corporate Clean -->
+    <div class="frame">
+      <div class="cap"><span class="num">12</span><span class="t">Corporate Clean</span><span class="d">Crisp indigo, enterprise polish</span></div>
+      <div class="stage" style="background:#eef1f6">
+        <div class="mini" style="font-family:var(--font);color:#1b2430;display:flex;gap:10px">
+          <div style="width:90px;flex:none;background:#1e2a44;border-radius:10px;padding:10px 8px;color:#c7d2e6">
+            <div style="font-weight:700;color:#fff;font-size:12px;margin-bottom:10px">Sendrift</div>
+            <div style="background:#2c3d61;border-radius:6px;padding:5px 7px;color:#fff;font-size:11px;margin-bottom:3px">Dashboard</div>
+            <div style="padding:5px 7px;font-size:11px">Contacts</div>
+            <div style="padding:5px 7px;font-size:11px">Campaigns</div>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;gap:8px;margin-bottom:8px">
+              <div style="flex:1;background:#fff;border:1px solid #d9dfe8;border-radius:9px;padding:9px"><div style="font-size:10px;color:#6b7688">CONTACTS</div><div style="font-size:17px;font-weight:800">24,318</div></div>
+              <div style="flex:1;background:#fff;border:1px solid #d9dfe8;border-radius:9px;padding:9px"><div style="font-size:10px;color:#6b7688">OPENS</div><div style="font-size:17px;font-weight:800">42.6%</div></div>
+            </div>
+            <div style="background:#fff;border:1px solid #d9dfe8;border-radius:9px;padding:10px"><div style="font-size:10px;color:#6b7688;margin-bottom:4px">PERFORMANCE</div><svg class="spark" height="44" viewBox="0 0 240 44" preserveAspectRatio="none"><path d="M0,34 40,26 80,30 120,16 160,20 200,10 240,6 240,44 0,44Z" fill="#2c3d61" fill-opacity=".08"/><polyline points="0,34 40,26 80,30 120,16 160,20 200,10 240,6" fill="none" stroke="#2c3d61" stroke-width="2"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">Sendrift design directions · Designed and built by Venkataramana · Copyright 2026</div>
+</div>
+
+<script>
+  (function(){
+    var root=document.documentElement;
+    try{var s=localStorage.getItem('sendrift-var-theme'); if(s)root.setAttribute('data-theme',s);}catch(e){}
+    document.getElementById('tg').addEventListener('click',function(){
+      var cur=root.getAttribute('data-theme');
+      var isDark=cur?cur==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+      var next=isDark?'light':'dark'; root.setAttribute('data-theme',next);
+      try{localStorage.setItem('sendrift-var-theme',next);}catch(e){}
+    });
+  })();
+</script>

@@ -1,0 +1,138 @@
+// Sendrift local database schema (SQLite for local development).
+// Copyright 2026 Venkataramana.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Contact {
+  id             String    @id @default(cuid())
+  email          String    @unique
+  name           String?
+  status         String    @default("Subscribed") // Subscribed, Pending, Unsubscribed, Bounced
+  lists          String? // comma separated list names for now
+  tags           String? // comma separated tag names for now
+  source         String?   @default("Manual")
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  lastActivityAt DateTime?
+
+  @@index([status])
+}
+
+model Campaign {
+  id          String    @id @default(cuid())
+  name        String
+  subject     String?
+  preheader   String?
+  fromName    String?
+  fromEmail   String?
+  type        String    @default("Regular") // Regular, AB, Automation
+  status      String    @default("Draft") // Draft, Scheduled, Sending, Sent
+  html        String?
+  listName    String?
+  recipients  Int       @default(0)
+  openRate    Float?
+  clickRate   Float?
+  scheduledAt DateTime?
+  sentAt      DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([status])
+}
+
+model Template {
+  id        String   @id @default(cuid())
+  name      String
+  category  String?  @default("Newsletter")
+  html      String   @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model List {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+}
+
+model Automation {
+  id        String   @id @default(cuid())
+  name      String
+  trigger   String   @default("Joins list")
+  status    String   @default("Draft") // Draft, Active, Paused
+  enrolled  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationResult {
+  id        String   @id @default(cuid())
+  email     String
+  status    String // Valid, Risky, Invalid, Unknown, Catch-all
+  score     Int?
+  flags     String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model Setting {
+  id          String   @id @default("singleton")
+  accountName String   @default("Acme Inc")
+  fromName    String   @default("Acme Team")
+  replyTo     String   @default("ramana.personal998@gmail.com")
+  address     String   @default("21 Riverside Way, Bengaluru 560001")
+  displayName String   @default("Sendrift")
+  brandColor  String   @default("#5B4BE6")
+  updatedAt   DateTime @updatedAt
+}
+
+// Per-recipient send record (one row per email actually dispatched).
+model Message {
+  id         String   @id @default(cuid())
+  campaignId String?
+  contactId  String?
+  email      String
+  subject    String?
+  status     String   @default("Sent") // Queued, Sent, Failed
+  error      String?
+  providerId String?
+  kind       String   @default("campaign") // campaign, test
+  createdAt  DateTime @default(now())
+
+  @@index([campaignId])
+  @@index([createdAt])
+}
+
+// Engagement events recorded by the tracking routes (open pixel, click
+// redirect, unsubscribe link). The campaign report and dashboard aggregate
+// these into real open / click / unsubscribe numbers.
+model EmailEvent {
+  id         String   @id @default(cuid())
+  messageId  String
+  campaignId String?
+  contactId  String?
+  email      String?
+  type       String // open, click, unsubscribe
+  url        String?
+  createdAt  DateTime @default(now())
+
+  @@index([campaignId])
+  @@index([messageId])
+  @@index([type])
+  @@index([createdAt])
+}

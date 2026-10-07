@@ -1,0 +1,299 @@
+<!--
+  Sendrift marketing landing page mockup (light theme).
+  Designed and built by Venkataramana. Copyright (c) 2026 Venkataramana. All rights reserved.
+-->
+<title>Sendrift Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Light-only marketing page. Indigo primary, coral accent, Inter + Space Grotesk. */
+  :root{
+    --primary:#5B4BE6; --primary-hover:#4A3BD1; --accent:#FF6B4A;
+    --ink:#141620; --sub:#5C6270; --faint:#8A90A0;
+    --bg:#FFFFFF; --soft:#F6F7FB; --card:#FFFFFF; --line:#E7E8EE; --line-soft:#EFF0F4;
+    --success:#12A150; --primary-subtle:#EEEBFF;
+    --font:'Inter',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --display:'Space Grotesk',var(--font);
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.02em}
+  p{margin:0}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding-left:24px;padding-right:24px}
+  .tnum{font-variant-numeric:tabular-nums}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 22px;border-radius:12px;font-weight:600;font-size:15px;cursor:pointer;border:1px solid transparent;font-family:var(--font)}
+  .btn svg{width:18px;height:18px}
+  .btn-primary{background:var(--primary);color:#fff;box-shadow:0 8px 20px rgba(91,75,230,.25)}
+  .btn-primary:hover{background:var(--primary-hover)}
+  .btn-ghost{background:transparent;color:var(--ink)}
+  .btn-ghost:hover{background:var(--soft)}
+  .btn-outline{background:#fff;border-color:var(--line);color:var(--ink)}
+  .btn-outline:hover{background:var(--soft)}
+  .btn-sm{height:40px;padding:0 16px;font-size:14px;border-radius:10px}
+
+  /* Nav */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft)}
+  .nav-in{display:flex;align-items:center;gap:26px;height:70px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:600;font-size:20px}
+  .brand .mk{width:34px;height:34px;border-radius:10px}
+  .nav-links{display:flex;gap:24px;margin-left:14px;color:var(--sub);font-weight:500;font-size:15px}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{margin-left:auto;display:flex;align-items:center;gap:10px}
+  @media(max-width:820px){.nav-links{display:none}}
+
+  /* Hero */
+  .hero{position:relative;overflow:hidden;background:
+    radial-gradient(60% 80% at 85% -10%, #EEEBFF 0%, rgba(238,235,255,0) 60%),
+    radial-gradient(50% 70% at 5% 0%, #FFE9E2 0%, rgba(255,233,226,0) 55%)}
+  .hero-in{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;padding-block:72px}
+  @media(max-width:900px){.hero-in{grid-template-columns:1fr;padding-block:48px;gap:32px}}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);background:var(--primary-subtle);padding:6px 12px;border-radius:999px;margin-bottom:18px}
+  .hero h1{font-family:var(--display);font-size:clamp(34px,5vw,54px);line-height:1.05;font-weight:600}
+  .hero p.lead{font-size:19px;color:var(--sub);margin-top:18px;max-width:34ch}
+  .hero-cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+  .trust{margin-top:18px;color:var(--faint);font-size:13.5px}
+
+  /* Product shot */
+  .shot{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 60px rgba(20,22,32,.14);overflow:hidden}
+  .shot-bar{display:flex;align-items:center;gap:6px;padding:12px 14px;border-bottom:1px solid var(--line-soft);background:var(--soft)}
+  .shot-bar i{width:10px;height:10px;border-radius:999px;background:#D8DAE2;display:inline-block}
+  .shot-body{padding:16px}
+  .shot-tiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px}
+  .shot-tile{border:1px solid var(--line-soft);border-radius:11px;padding:11px}
+  .shot-tile .l{font-size:10.5px;color:var(--faint);font-weight:600}
+  .shot-tile .v{font-size:19px;font-weight:700}
+  .shot-chart{border:1px solid var(--line-soft);border-radius:11px;padding:12px}
+
+  /* Sections */
+  section{padding-block:72px}
+  .sec-soft{background:var(--soft)}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 44px}
+  .sec-head .k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);margin-bottom:12px}
+  .sec-head h2{font-size:clamp(26px,3.4vw,38px);font-family:var(--display);font-weight:600}
+  .sec-head p{color:var(--sub);margin-top:12px;font-size:17px}
+
+  /* Logo strip */
+  .strip{text-align:center;color:var(--faint);font-weight:600;font-size:13px;letter-spacing:.02em}
+  .strip .row{display:flex;justify-content:center;gap:38px;flex-wrap:wrap;margin-top:20px;opacity:.65}
+  .strip .row span{font-family:var(--display);font-weight:600;font-size:19px;color:var(--sub)}
+
+  /* Feature grid */
+  .fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:900px){.fgrid{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.fgrid{grid-template-columns:1fr}}
+  .fcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .fcard .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--primary-subtle);color:var(--primary);margin-bottom:16px}
+  .fcard .ico.coral{background:#FFE9E2;color:var(--accent)}
+  .fcard .ico.teal{background:#DDF6F2;color:#0FB5AE}
+  .fcard h3{font-size:18px;margin-bottom:8px}
+  .fcard p{color:var(--sub);font-size:14.5px}
+
+  /* Infographic flow */
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:stretch}
+  @media(max-width:820px){.flow{grid-template-columns:1fr 1fr}}
+  @media(max-width:460px){.flow{grid-template-columns:1fr}}
+  .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;text-align:center;position:relative}
+  .step .n{width:30px;height:30px;border-radius:999px;background:var(--primary);color:#fff;font-weight:700;display:grid;place-items:center;margin:0 auto 12px;font-size:14px}
+  .step h4{margin:0 0 6px;font-size:16px}
+  .step p{font-size:13px;color:var(--sub)}
+  .step .si{margin:0 auto 10px;color:var(--primary)}
+
+  /* Testimonials */
+  .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:820px){.tgrid{grid-template-columns:1fr}}
+  .tcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
+  .tcard .stars{color:var(--accent);letter-spacing:2px;margin-bottom:12px}
+  .tcard p{font-size:16px}
+  .tcard .who{margin-top:16px;color:var(--sub);font-size:13.5px;font-weight:600}
+  .metricband{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-top:44px;text-align:center}
+  .metricband .m .v{font-family:var(--display);font-size:30px;font-weight:600;color:var(--primary)}
+  .metricband .m .l{color:var(--sub);font-size:13.5px}
+
+  /* Pricing teaser */
+  .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:stretch}
+  @media(max-width:900px){.pgrid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.pgrid{grid-template-columns:1fr}}
+  .pcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:8px}
+  .pcard.pop{border-color:var(--primary);box-shadow:0 12px 30px rgba(91,75,230,.14);position:relative}
+  .pcard .tag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px}
+  .pcard .pn{font-weight:700;font-size:15px}
+  .pcard .pr{font-family:var(--display);font-size:30px;font-weight:600}
+  .pcard .pr small{font-size:14px;color:var(--faint);font-weight:400}
+  .pcard .pd{color:var(--sub);font-size:13px}
+  .pcard ul{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:7px;font-size:13.5px;color:var(--sub)}
+  .pcard li{display:flex;gap:8px;align-items:flex-start}
+  .pcard li svg{width:15px;height:15px;color:var(--success);flex:none;margin-top:3px}
+  .pcard .btn{margin-top:14px;justify-content:center}
+
+  /* CTA band */
+  .ctaband{border-radius:22px;padding:52px 32px;text-align:center;color:#fff;background:linear-gradient(120deg,#5B4BE6,#7C5CFF 48%,#FF6B4A)}
+  .ctaband h2{font-family:var(--display);font-size:clamp(26px,3.4vw,38px);font-weight:600}
+  .ctaband p{opacity:.92;margin-top:10px;font-size:17px}
+  .ctaband .btn{margin-top:24px;background:#fff;color:var(--primary)}
+  .ctaband .btn:hover{background:#f2f0ff}
+
+  /* Footer */
+  footer{background:#0E0F14;color:#C7CAD3;padding-block:52px 28px}
+  .fcols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+  @media(max-width:820px){.fcols{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.fcols{grid-template-columns:1fr}}
+  footer .brand{color:#fff;margin-bottom:12px}
+  footer h5{color:#fff;font-size:13px;margin:0 0 12px;letter-spacing:.03em}
+  footer a{display:block;color:#9AA0AE;font-size:14px;padding:5px 0}
+  footer a:hover{color:#fff}
+  .fbot{border-top:1px solid #23252E;margin-top:34px;padding-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#7C808C;font-size:13px}
+
+  .grad-txt{background:linear-gradient(120deg,#5B4BE6,#FF6B4A);-webkit-background-clip:text;background-clip:text;color:transparent}
+</style>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <svg class="mk" viewBox="0 0 48 48" fill="none" aria-hidden="true"><defs><linearGradient id="g0" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse"><stop stop-color="#5B4BE6"/><stop offset=".55" stop-color="#7C5CFF"/><stop offset="1" stop-color="#FF6B4A"/></linearGradient></defs><rect width="48" height="48" rx="13" fill="url(#g0)"/><path d="M35 13.5 13.5 23l9.1 3.1 3.1 9.1Z" fill="#fff"/><path d="M35 13.5 22.6 26.1l3.1 9.1Z" fill="#fff" fill-opacity=".72"/><circle cx="14.6" cy="30.4" r="1.5" fill="#fff" fill-opacity=".85"/><circle cx="18.9" cy="33.9" r="1.1" fill="#fff" fill-opacity=".6"/></svg>
+      Sendrift
+    </a>
+    <nav class="nav-links"><a href="#features">Product</a><a href="#pricing">Pricing</a><a href="#customers">Customers</a><a href="#resources">Resources</a></nav>
+    <div class="nav-cta"><a class="btn btn-ghost btn-sm" href="#">Log in</a><a class="btn btn-primary btn-sm" href="#">Start free</a></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top" style="padding-block:0">
+  <div class="wrap hero-in">
+    <div>
+      <span class="eyebrow">Email marketing and automation</span>
+      <h1>Send emails that land. <span class="grad-txt">Run campaigns that run themselves.</span></h1>
+      <p class="lead">Sendrift helps growing teams design beautiful emails, automate the follow-up, and see exactly what is working. No clutter, no guesswork.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> Start free</a>
+        <a class="btn btn-outline" href="#">See a live demo</a>
+      </div>
+      <div class="trust">No credit card required. 3,000 free emails a month. Cancel anytime.</div>
+    </div>
+    <div class="shot" aria-hidden="true">
+      <div class="shot-bar"><i></i><i></i><i></i></div>
+      <div class="shot-body">
+        <div class="shot-tiles">
+          <div class="shot-tile"><div class="l">CONTACTS</div><div class="v tnum">24,318</div></div>
+          <div class="shot-tile"><div class="l">OPEN RATE</div><div class="v tnum">42.6%</div></div>
+          <div class="shot-tile"><div class="l">CLICKS</div><div class="v tnum">7.9%</div></div>
+        </div>
+        <div class="shot-chart">
+          <div style="font-size:11px;color:var(--faint);font-weight:600;margin-bottom:6px">AUDIENCE GROWTH</div>
+          <svg width="100%" height="96" viewBox="0 0 320 96" preserveAspectRatio="none"><defs><linearGradient id="af" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5B4BE6" stop-opacity=".22"/><stop offset="1" stop-color="#5B4BE6" stop-opacity="0"/></linearGradient></defs><path d="M0,74 40,66 80,70 120,52 160,58 200,38 240,44 280,24 320,18 320,96 0,96Z" fill="url(#af)"/><polyline points="0,74 40,66 80,70 120,52 160,58 200,38 240,44 280,24 320,18" fill="none" stroke="#5B4BE6" stroke-width="2.5"/><polyline points="0,86 40,82 80,84 120,76 160,80 200,70 240,74 280,64 320,60" fill="none" stroke="#FF6B4A" stroke-width="2" stroke-opacity=".7"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO STRIP -->
+<section style="padding-block:40px">
+  <div class="wrap strip">
+    Trusted by fast-moving teams at 4,000+ companies
+    <div class="row"><span>Northwind</span><span>Brightpath</span><span>Ridgeline</span><span>Lumen</span><span>Evergreen</span></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="sec-soft" id="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">Everything in one place</div>
+      <h2>From the first signup to the follow-up nobody had time to write</h2>
+      <p>Design, automate, and grow, without stitching three tools together.</p>
+    </div>
+    <div class="fgrid">
+      <div class="fcard"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3>Design without the drag</h3><p>Build on-brand emails in a true drag-and-drop editor. Start from a template or a blank canvas, preview on every device, and hit send with confidence.</p></div>
+      <div class="fcard"><div class="ico teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M9 6h6a2 2 0 0 1 2 2v7"/></svg></div><h3>Automations that follow up</h3><p>Welcome new subscribers, win back the quiet ones, and nurture leads on autopilot with a visual workflow builder anyone can run.</p></div>
+      <div class="fcard"><div class="ico coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7"/><rect x="12" y="6" width="3" height="11"/><rect x="17" y="13" width="3" height="4"/></svg></div><h3>Know what worked, instantly</h3><p>Real-time opens, clicks, and revenue in dashboards you will actually read. Click heatmaps show you exactly where people tapped.</p></div>
+      <div class="fcard"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Reach the inbox</h3><p>Guided domain authentication (DKIM, SPF, DMARC) and deliverability tooling keep your sender reputation strong.</p></div>
+      <div class="fcard"><div class="ico coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><h3>Grow on every page</h3><p>Popups, embedded forms, and landing pages that match your brand and capture the right people.</p></div>
+      <div class="fcard"><div class="ico teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/><path d="m8.5 11 2 2 3-3.5"/></svg></div><h3>Find and verify</h3><p>Find emails, verify addresses, and enrich contacts before you send, so your list stays clean and your bounces stay low.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INFOGRAPHIC FLOW -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">How it works</div>
+      <h2>Four steps from a blank canvas to a campaign that converts</h2>
+    </div>
+    <div class="flow">
+      <div class="step"><div class="n">1</div><svg class="si" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg><h4>Design</h4><p>Build a beautiful email with the drag-and-drop editor.</p></div>
+      <div class="step"><div class="n">2</div><svg class="si" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/><path d="m8.5 11 2 2 3-3.5"/></svg><h4>Verify</h4><p>Clean your list so every address is worth sending to.</p></div>
+      <div class="step"><div class="n">3</div><svg class="si" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M9 6h6a2 2 0 0 1 2 2v7"/></svg><h4>Automate</h4><p>Set up journeys that follow up while you sleep.</p></div>
+      <div class="step"><div class="n">4</div><svg class="si" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7"/><rect x="12" y="6" width="3" height="11"/></svg><h4>Analyze</h4><p>See opens, clicks, and revenue, then do more of what works.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec-soft" id="customers">
+  <div class="wrap">
+    <div class="sec-head"><div class="k">Loved by teams</div><h2>The results speak for themselves</h2></div>
+    <div class="tgrid">
+      <div class="tcard"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"We replaced three tools with Sendrift and our open rates went up 22%."</p><div class="who">Maya R., Head of Growth</div></div>
+      <div class="tcard"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"The automation builder is the first one my whole team actually understands."</p><div class="who">Devin O., Marketing Lead</div></div>
+      <div class="tcard"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Setup took an afternoon. Our first campaign paid for the year."</p><div class="who">Priya N., Founder</div></div>
+    </div>
+    <div class="metricband">
+      <div class="m"><div class="v tnum">120M+</div><div class="l">emails delivered monthly</div></div>
+      <div class="m"><div class="v tnum">99.2%</div><div class="l">average deliverability</div></div>
+      <div class="m"><div class="v tnum">4.8/5</div><div class="l">average rating</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING TEASER -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head"><div class="k">Pricing</div><h2>Simple pricing that grows with your list</h2><p>Start free. Upgrade when you are ready. Every plan includes the builder, automations, and analytics.</p></div>
+    <div class="pgrid">
+      <div class="pcard"><div class="pn">Free</div><div class="pr">$0</div><div class="pd">Up to 500 contacts</div><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 3,000 emails a month</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Drag-and-drop builder</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 1 automation</li></ul><a class="btn btn-outline" href="#">Start free</a></div>
+      <div class="pcard"><div class="pn">Starter</div><div class="pr">$19<small>/mo</small></div><div class="pd">Up to 2,500 contacts</div><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 15,000 emails a month</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> A/B testing</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Custom domain and DKIM</li></ul><a class="btn btn-outline" href="#">Start trial</a></div>
+      <div class="pcard pop"><span class="tag">Most popular</span><div class="pn">Growth</div><div class="pr">$49<small>/mo</small></div><div class="pd">Up to 10,000 contacts</div><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Unlimited emails</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Send-time optimization</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Click heatmaps</li></ul><a class="btn btn-primary" href="#">Start trial</a></div>
+      <div class="pcard"><div class="pn">Scale</div><div class="pr">$99<small>/mo</small></div><div class="pd">Up to 25,000 contacts</div><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Unlimited emails</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Dedicated IP</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Priority support</li></ul><a class="btn btn-outline" href="#">Start trial</a></div>
+    </div>
+    <p style="text-align:center;color:var(--sub);margin-top:22px;font-size:14px">Need more than 25,000 contacts? <a href="#" style="color:var(--primary);font-weight:600">Contact sales</a> for custom volume and enterprise features.</p>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="resources">
+  <div class="wrap">
+    <div class="ctaband">
+      <h2>Your next campaign is waiting</h2>
+      <p>Join thousands of teams sending smarter with Sendrift.</p>
+      <a class="btn" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> Create your free account</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div>
+        <div class="brand" style="font-family:var(--display);font-weight:600;font-size:20px;display:flex;align-items:center;gap:11px">
+          <svg width="30" height="30" viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect width="48" height="48" rx="13" fill="url(#g0)"/><path d="M35 13.5 13.5 23l9.1 3.1 3.1 9.1Z" fill="#fff"/></svg>
+          Sendrift
+        </div>
+        <p style="color:#9AA0AE;font-size:14px;max-width:26ch">Email marketing and automation for growing teams. Built for CAN-SPAM, GDPR, and CASL.</p>
+      </div>
+      <div><h5>Product</h5><a href="#">Features</a><a href="#">Templates</a><a href="#">Automations</a><a href="#">Pricing</a><a href="#">Integrations</a></div>
+      <div><h5>Resources</h5><a href="#">Blog</a><a href="#">Guides</a><a href="#">Help center</a><a href="#">Deliverability</a><a href="#">API docs</a></div>
+      <div><h5>Company</h5><a href="#">About</a><a href="#">Customers</a><a href="#">Contact</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+    <div class="fbot"><span>Copyright 2026 Sendrift. Designed and built by Venkataramana.</span><span>Built for CAN-SPAM, GDPR, and CASL.</span></div>
+  </div>
+</footer>
